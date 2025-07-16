@@ -1,0 +1,13 @@
+- name: Deploy to server (build on server)
+  uses: appleboy/ssh-action@v1.0.0
+  with:
+    host: ${{ secrets.PROD_HOST }}
+    username: ${{ secrets.PROD_USERNAME }}
+    key: ${{ secrets.SSH_KEY }}
+    script: |
+      cd /root/beta_ci_cd_app
+      git pull origin main
+      docker stop quickticketai || true
+      docker rm quickticketai || true
+      docker build -t quickticketai:latest .
+      docker run -d --name quickticketai -p 80:3000 --env-file .env quickticketai:latest
