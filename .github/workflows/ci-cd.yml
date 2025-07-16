@@ -20,6 +20,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /root/beta_ci_cd_app/ci_cd
+            git pull origin main
             docker stop beta_ci_cd_app || true
             docker rm beta_ci_cd_app || true
             docker build -t beta_ci_cd_app:latest .
