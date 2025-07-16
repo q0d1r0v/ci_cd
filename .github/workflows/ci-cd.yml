@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /root/beta_ci_cd_app
+            cd /root/beta_ci_cd_app/ci_cd
             docker stop beta_ci_cd_app || true
             docker rm beta_ci_cd_app || true
             docker build -t beta_ci_cd_app:latest .
