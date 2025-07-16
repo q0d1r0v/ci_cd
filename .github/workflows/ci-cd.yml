@@ -23,4 +23,4 @@ jobs:
             docker stop beta_ci_cd_app || true
             docker rm beta_ci_cd_app || true
             docker build -t beta_ci_cd_app:latest .
-            docker run -d --name beta_ci_cd_app -p 80:3000 --env-file .env beta_ci_cd_app:latest
+            docker run -d --name beta_ci_cd_app -p 80:3000 beta_ci_cd_app:latest
